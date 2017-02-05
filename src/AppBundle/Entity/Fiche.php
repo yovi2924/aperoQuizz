@@ -22,17 +22,23 @@ class Fiche
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="questions", type="text")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="fiche")
      */
     private $questions;
 
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -40,27 +46,36 @@ class Fiche
     }
 
     /**
-     * Set questions
+     * Add question
      *
-     * @param string $questions
+     * @param \AppBundle\Entity\Question $question
      *
      * @return Fiche
      */
-    public function setQuestions($questions)
+    public function addQuestion(\AppBundle\Entity\Question $question)
     {
-        $this->questions = $questions;
+        $this->questions[] = $question;
 
         return $this;
     }
 
     /**
+     * Remove question
+     *
+     * @param \AppBundle\Entity\Question $question
+     */
+    public function removeQuestion(\AppBundle\Entity\Question $question)
+    {
+        $this->questions->removeElement($question);
+    }
+
+    /**
      * Get questions
      *
-     * @return string
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getQuestions()
     {
         return $this->questions;
     }
 }
-

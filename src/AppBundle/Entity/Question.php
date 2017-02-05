@@ -38,7 +38,7 @@ class Question
     /**
      * @var string
      *
-     * @ORM\Column(name="question", type="string", length=255)
+     * @ORM\Column(name="question", type="text")
      */
     private $question;
 
@@ -49,11 +49,19 @@ class Question
      */
     private $titre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Fiche", inversedBy="questions")
+     */
+    private $fiche;
+
+
+
+
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -155,5 +163,28 @@ class Question
     {
         return $this->titre;
     }
-}
 
+    /**
+     * Set fiche
+     *
+     * @param \AppBundle\Entity\Fiche $fiche
+     *
+     * @return Question
+     */
+    public function setFiche(\AppBundle\Entity\Fiche $fiche = null)
+    {
+        $this->fiche = $fiche;
+
+        return $this;
+    }
+
+    /**
+     * Get fiche
+     *
+     * @return \AppBundle\Entity\Fiche
+     */
+    public function getFiche()
+    {
+        return $this->fiche;
+    }
+}
