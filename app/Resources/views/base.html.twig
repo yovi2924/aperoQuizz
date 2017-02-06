@@ -2,11 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}apero Quizz{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <nav>
+            <a href="{{ path('fiches') }}">
+                Lien vers les fiches
+            </a>
+            <a href="{{ path('fiche', { 'id': 1 }) }}">
+                Lien vers la fiche d'id {{ 1 }}
+            </a>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
